@@ -13,7 +13,14 @@ def get_root_folder():
         with open(config_file, "r") as f:
             config = json.load(f)
 
-        return Path(config["root_folder"])
+        saved_path = Path(config["root_folder"])
+        if saved_path.exists():
+            return saved_path
+
+        print(
+            "\nSaved accident folder no longer exists."
+        )
+        print("Please choose a new location.\n")
 
     default_parent = Path.home() / "Documents"
 
@@ -221,6 +228,7 @@ def show_details():
     accidents = load_accidents()
 
     if not accidents:
+        print("-" * 50)
         print("No accident records found.")
         return
 
@@ -243,11 +251,6 @@ def show_details():
 
 
 def display_accident(found):
-    
-
-    if found is None:
-        print("Accident not found.")
-        return
 
     print("\n" + "=" * 50)
     print("ACCIDENT DETAILS")
@@ -310,10 +313,6 @@ def display_accident(found):
 def search_accident():
 
     accidents = load_accidents()
-
-    if not accidents:
-        print("No accident records found.")
-        return
 
     result = []
     criteria = {}
@@ -389,6 +388,7 @@ def search_accident():
 
     if not result:
         print("\nNo matching accidents found.")
+        print()
         return
 
     print(
@@ -411,6 +411,7 @@ def menu():
         print("3. Exit")
 
         choice = input("Choice: ")
+        print()
 
         if choice == "1":
             save_accident()
