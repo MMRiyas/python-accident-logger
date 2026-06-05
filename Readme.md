@@ -18,7 +18,6 @@ A Python desktop application for recording and managing accident reports. The ap
 ## Technologies Used
 
 * Python
-* Tkinter
 * JSON
 * File System Operations
 
@@ -46,7 +45,7 @@ python accident_logger.py
 
 ```text
 python-accident-logger/
-├── Accident/
+├── Accident/ (will be changed as per user inputted root path)
 │   ├── accidents.json
 │   └── accident_001/
 ├── screenshots/
